@@ -1,0 +1,22 @@
+pipeline
+{
+    agent any
+        stages
+        {
+            stage("Prebuild")
+            {
+                steps
+                {
+                    script
+                    {
+                        mostrarVersionMaven('maven version')
+                    }
+                }
+            }
+        }
+}
+def mostrarVersionMaven(String a)
+{
+    bat "java -version"
+    echo a
+}
