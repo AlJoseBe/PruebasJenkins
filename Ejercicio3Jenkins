@@ -1,0 +1,62 @@
+def Integer salariobruto=1000000
+pipeline
+{
+    agent any
+        stages("Ejercicio 3")
+        {
+            stage("Peliculas Favoritas")
+            {
+                steps
+                {
+					echo "Blade Runner"
+					echo "Alien"
+					echo "El padrino"
+					echo "Pulp Fiction"
+					echo "Gladiator"
+                }
+            }
+            stage("Comida Favorito")
+            {
+                steps
+                {
+                    echo "Espaguetis con chorizo"
+                }
+            }
+            stage("Signo Zodiaco")
+            {
+                steps
+                {
+                    echo "Sagitario"
+                }
+            }
+            stage("Puesto Actual")
+            {
+                steps
+                {
+                    echo "Analista programador"
+                }
+            }
+            stage("Salario")
+            {
+                steps
+                {
+                    script{
+                        println salariobruto
+    					SalarioNeto(salariobruto)
+                    }
+                }
+            }
+        }
+}
+def SalarioNeto(Integer salariobruto)
+{
+    script{
+		if(salariobruto>1000){
+			def neto
+			neto=salariobruto * 0.8
+			println neto
+		}else{
+			println salariobruto
+		}
+    }
+}
