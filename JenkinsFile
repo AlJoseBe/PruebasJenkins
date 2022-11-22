@@ -9,13 +9,13 @@ pipeline
                 {
                     script
                     {
-                        mostrarVersionMaven('maven version')
+                        mostrarVersionJava('Java version')
                     }
                 }
             }
         }
 }
-def mostrarVersionMaven(String a)
+def mostrarVersionJava(String a)
 {
     bat "java -version"
     echo a
