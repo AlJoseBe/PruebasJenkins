@@ -1,0 +1,46 @@
+def habitantes=50000
+pipeline
+{
+    agent any
+        stages("Ejercicio 2")
+        {
+            stage("Clima Actual")
+            {
+                steps
+                {
+                    script
+                    {
+                        echo "Hoy es un día soleado con intervalos nubosos, la mínima son 5ºC y la máxima 15ºC"
+                    }
+                }
+            }
+            stage("Cantidad de habitantes")
+            {
+                steps
+                {
+                    println habitantes
+                }
+            }
+            stage("Función poblacion neta")
+            {
+                steps
+                {
+                    script
+                    {
+                        PoblacionNeta(habitantes)
+                    }
+                }
+            }
+        }
+}
+def PoblacionNeta(Integer habitantes)
+{
+    script{
+        def dos=2
+        def a=habitantes
+        def resultado
+        resultado= a/dos
+        println resultado
+        
+    }
+}
