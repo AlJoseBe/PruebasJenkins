@@ -1,0 +1,34 @@
+pipeline
+{
+    agent any
+        stages("Ejercico 4")
+        {
+            stage("Principal")
+            {
+                steps
+                {
+                    script
+                    {
+                        def now =new Date()
+                        def hora=now.format('HH')
+                        def Integer iHora = hora as Integer
+                        if (iHora>12){
+                            echo('El usuario que corre el proceso es: ')
+    						//echo "Usuario ${BUILD_USER_ID}"
+    						echo "..."
+                            echo('El ID del usuario que corre el proceso es: ')
+    						echo "..."
+                            mostrarVersionJava('Java version')
+                        }else{
+                            echo 'Aun no son las 12'
+                        }
+                    }
+                }
+            } 
+        }
+}
+def mostrarVersionJava(String a)
+{
+    echo a
+    bat "java -version"
+}
