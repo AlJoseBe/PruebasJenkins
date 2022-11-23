@@ -1,0 +1,52 @@
+pipeline {
+    agent any 
+    
+    stages {
+        stage("Comprobar fecha") {
+            steps {
+                script {
+                    def dia = new Date().getDay()
+                    def map=[
+                        1:"Lunes",
+                        2:"Martes",
+                        3:"Miercoles",
+                        4:"Jueves",
+                        5:"Viernes",
+                        6:"Sabado",
+                        7:"Domingo",
+                    ]
+                    
+                    println map[dia]
+
+                    switch(dia) {
+                      case 1:
+                        echo 'Día nublado con posibilidades de lluvias. La temperatura mínima serán 5º y la máxima 15ºC'
+                        break
+                      case 2:
+                        def resultado = 150 + 350
+                        println "La suma de 150 más 350 es: ${resultado}"
+                        break
+                      case 3:
+                        def PI=Math.PI
+                        println "El número PI es ${PI}"
+                        break
+                      case 4:
+                        echo 'El usuario que ejecutó el pipeline es Tomás'
+                        break
+                      case 5:
+                        versionJava()
+                        break
+                      default:
+                        echo 'Día para descansar'
+                        break
+                    }                    
+                }
+            }
+        }
+    }
+}
+def versionJava(){
+    echo "La version de Java es: "
+    bat "java -version"
+
+}
