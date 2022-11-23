@@ -1,0 +1,47 @@
+pipeline {
+    agent any 
+    
+    stages {
+        stage("Modelo Examen II") {
+            steps {
+                script {
+                    def SeLanzoComando=false
+                    def hora = new Date().getHours()
+                    println "Ahora mismo son las ${hora}"
+                    if(hora>0 & hora<10){
+                        comando2()
+                        SeLanzoComando=true
+                    }else{
+                        if(hora>11 & hora<15){
+                            comando1()
+                            SeLanzoComando=true
+                        }else{
+                            if(hora>16 & hora<22){
+                                comando3()
+                                SeLanzoComando=true
+							}
+                        }
+                    }
+                    if(!SeLanzoComando){
+                        echo "No se lanzó ningún comando."
+                    }
+                }
+            }
+        }
+    }
+}
+def comando1(){
+    //- 1) git --version 
+    echo "Comando 1: git --version"
+    bat "git --version "
+}
+def comando2(){
+    //- 2) ipconfig /all
+    echo "Comando 2: ipconfig /flushdns"
+    bat "ipconfig /all"
+}
+def comando3(){
+    //- 3) TIME
+    echo "Comando 3: TIME"
+    bat "TIME /T"
+}
